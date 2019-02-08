@@ -41,7 +41,7 @@ describe('cookieParser', () => {
   test('should not fall if no cookies provided', () => {
     req = {
       headers: {
-        cookie: '',
+        // cookie: '',
       },
     };
 

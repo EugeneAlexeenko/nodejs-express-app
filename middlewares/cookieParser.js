@@ -7,7 +7,7 @@
 
 const cookieParser = (req, res, next) => {
   if (req.headers.cookie) {
-    const cookiesString = req.headers.cookie;
+    const cookiesString = decodeURIComponent(req.headers.cookie);
     const cookiePairs = cookiesString.split(';');
     const parsedCookies = {};
 

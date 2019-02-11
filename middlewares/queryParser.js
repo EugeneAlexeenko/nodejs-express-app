@@ -17,8 +17,8 @@ const queryParser = (req, res, next) => {
     const paramPairs = queryString.split('&');
 
     paramPairs.forEach((pair) => {
-      const key = pair.split('=')[0];
-      const value = pair.split('=')[1];
+      const key = decodeURIComponent(pair.split('=')[0]);
+      const value = decodeURIComponent(pair.split('=')[1]);
 
       params[key] = value;
     });

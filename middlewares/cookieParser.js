@@ -2,7 +2,7 @@
  * Middleware for parsing cookies.
  *
  * Parses cookie header and adds parsed cookie
- * to request stream object as ​parsedCookies​ field.
+ * to request stream object as parsedCookies field.
  */
 
 const cookieParser = (req, res, next) => {

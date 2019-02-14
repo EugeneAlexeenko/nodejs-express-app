@@ -4,7 +4,7 @@
   "description": "nodejs express app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node --inspect index.js",
+    "start-dev": "nodemon --exec babel-node --inspect --require ./node_modules/dotenv/config index.js ",
     "test": "jest",
     "test-watch": "jest --watch",
     "lint": "eslint ."
@@ -21,6 +21,7 @@
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
+    "dotenv": "^6.2.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.15.0",
@@ -32,7 +33,10 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
     "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "winston": "^3.2.1"
   }
 }

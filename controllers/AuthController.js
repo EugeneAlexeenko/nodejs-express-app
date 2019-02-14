@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import UserModel from '../models/UserModel';
 
-const signIn = (req, res) => { // eslint-disable-line
+// eslint-disable-next-line consistent-return
+const signIn = (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -38,6 +39,13 @@ const signIn = (req, res) => { // eslint-disable-line
           },
         },
         token,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        code: 500,
+        message: 'Server Error',
+        data: error,
       });
     });
 };

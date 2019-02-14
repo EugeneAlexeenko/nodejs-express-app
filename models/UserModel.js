@@ -47,7 +47,8 @@ class UserModel {
 
   /**
    * Return specific user by email
-   * @param {Number} email User's email
+   * @param {String} email User's email
+   * @returns {Object} User
    */
   findOne(email) {
     const user = this.model.find(userObject => (userObject.email === email));

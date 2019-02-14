@@ -22,8 +22,8 @@ class UserController {
   }
 
   getOne(req, res) {
-    const { id } = req.params;
-    this.model.findOne(Number(id))
+    const { email } = req.params;
+    this.model.findOne(email)
       .then((user) => {
         res.status(200).json(user);
       })

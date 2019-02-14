@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-const checkToken = (req, res, next) => { // eslint-disable-line
+// eslint-disable-next-line consistent-return
+const checkToken = (req, res, next) => {
   const authorizationHeader = req.headers.authorization;
 
   if (!authorizationHeader) {
@@ -21,7 +22,8 @@ const checkToken = (req, res, next) => { // eslint-disable-line
     });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => { // eslint-disable-line
+  // eslint-disable-next-line consistent-return
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({
         code: 401,

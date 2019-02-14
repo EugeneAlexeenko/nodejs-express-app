@@ -2,3 +2,6 @@ node_modules
 coverage
 logs
 .vscode
+
+# environment variables
+.env

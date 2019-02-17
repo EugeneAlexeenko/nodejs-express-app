@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-// eslint-disable-next-line consistent-return
 const checkToken = (req, res, next) => {
   const authorizationHeader = req.headers.authorization;
 
@@ -22,8 +21,7 @@ const checkToken = (req, res, next) => {
     });
   }
 
-  // eslint-disable-next-line consistent-return
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  return jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({
         code: 401,
@@ -35,7 +33,7 @@ const checkToken = (req, res, next) => {
 
     req.user = decoded;
 
-    next();
+    return next();
   });
 };
 

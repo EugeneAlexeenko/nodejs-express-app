@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import UserModel from '../models/UserModel';
 
-// eslint-disable-next-line consistent-return
 const signIn = (req, res) => {
   const { email, password } = req.body;
 
@@ -13,7 +12,7 @@ const signIn = (req, res) => {
     });
   }
 
-  UserModel.findOne(email)
+  return UserModel.findOne(email)
     .then((user) => {
       if (!user || user.password !== password) {
         return res.status(401).json({
@@ -24,6 +23,7 @@ const signIn = (req, res) => {
       }
 
       const payload = {
+        sub: user.id,
         email: user.email,
         username: user.username,
       };
@@ -34,6 +34,7 @@ const signIn = (req, res) => {
         message: 'Ok',
         data: {
           user: {
+            id: user.id,
             email: user.email,
             username: user.username,
           },
@@ -50,6 +51,104 @@ const signIn = (req, res) => {
     });
 };
 
+const signInLocalStrategy = (req, res) => {
+  const { user } = req;
+
+  const payload = {
+    sub: user.id,
+    name: user.userName,
+    email: user.email,
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+
+  res.json({
+    code: 200,
+    message: 'Ok',
+    data: {
+      user: {
+        id: user.id,
+        name: user.userName,
+        email: user.email,
+      },
+    },
+    token,
+  });
+};
+
+const signInGoogleStrategy = (req, res) => {
+  const { user } = req;
+
+  const payload = {
+    sub: user.id,
+    name: user.displayName,
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+
+  res.json({
+    code: 200,
+    message: 'Ok',
+    data: {
+      user: {
+        id: user.id,
+        name: user.displayName,
+      },
+    },
+    token,
+  });
+};
+
+const signInFacebookStrategy = (req, res) => {
+  const { user } = req;
+
+  const payload = {
+    sub: user.id,
+    name: user.displayName,
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+
+  res.json({
+    code: 200,
+    message: 'Ok',
+    data: {
+      user: {
+        id: user.id,
+        name: user.displayName,
+      },
+    },
+    token,
+  });
+};
+
+const signInGithubStrategy = (req, res) => {
+  const { user } = req;
+
+  const payload = {
+    sub: user.id,
+    name: user.displayName,
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+
+  res.json({
+    code: 200,
+    message: 'Ok',
+    data: {
+      user: {
+        id: user.id,
+        name: user.displayName,
+      },
+    },
+    token,
+  });
+};
+
 export default {
   signIn,
+  signInLocalStrategy,
+  signInGoogleStrategy,
+  signInFacebookStrategy,
+  signInGithubStrategy,
 };

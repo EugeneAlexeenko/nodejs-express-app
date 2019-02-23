@@ -3,21 +3,27 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { Strategy as GithubStrategy } from 'passport-github';
-import UserModel from '../models/UserModel';
+import db from '../models/db';
+
+const UserModel = db.User;
 
 passport.use('local', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
-}, (email, password, done) => {
-  UserModel.findOne(email)
-    .then((user) => {
-      if (!user || user.password !== password) {
-        return done(null, false, { message: 'Wrong email/password combination' });
-      }
+}, async (email, password, done) => {
+  try {
+    const user = await UserModel.findOne({
+      where: { email },
+    });
 
-      return done(null, user);
-    })
-    .catch(error => done(error));
+    if (!user || user.password !== password) {
+      return done(null, false, { message: 'Wrong email/password combination' });
+    }
+
+    return done(null, user);
+  } catch (error) {
+    return done(error);
+  }
 }));
 
 passport.use('google', new GoogleStrategy({

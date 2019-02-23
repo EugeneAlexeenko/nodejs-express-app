@@ -17,14 +17,9 @@ sequelize.authenticate()
   .then(() => logger.info('Connected to database'))
   .catch(error => logger.error(error.message));
 
-// const modelsPath = path.resolve('models');
-// console.log(modelsPath);
-
 fs
   .readdirSync(__dirname)
-  // .readdirSync(modelsPath)
   .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
-  // .filter(file => (file.indexOf('.') !== 0) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;

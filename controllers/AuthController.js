@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import UserModel from '../models/UserModel';
+import db from '../models/db';
 
 const signIn = (req, res) => {
   const { email, password } = req.body;
@@ -12,7 +12,9 @@ const signIn = (req, res) => {
     });
   }
 
-  return UserModel.findOne(email)
+  return db.User.findOne({
+    where: { email },
+  })
     .then((user) => {
       if (!user || user.password !== password) {
         return res.status(401).json({

@@ -1,8 +1,8 @@
-import ProductModel from '../models/ProductModel';
+import db from '../models/db';
 
 class ProductController {
   constructor() {
-    this.model = ProductModel;
+    this.model = db.Product;
   }
 
   create(req, res) {

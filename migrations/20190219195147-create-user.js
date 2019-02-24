@@ -8,14 +8,21 @@ module.exports = {
     },
     email: {
       required: true,
+      unique: true,
+      allowNull: false,
       type: Sequelize.STRING,
+      validate: {
+        isEmail: true,
+      },
     },
     username: {
       required: true,
+      allowNull: false,
       type: Sequelize.STRING,
     },
     password: {
       required: true,
+      allowNull: false,
       type: Sequelize.STRING,
     },
     createdAt: {
@@ -29,5 +36,5 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }),
-  down: queryInterface => queryInterface.dropTable('users'),
+  down: queryInterface => queryInterface.dropTable('Users'),
 };

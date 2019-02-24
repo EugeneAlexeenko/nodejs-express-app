@@ -9,6 +9,8 @@ class UserController {
   async create(req, res) {
     const newUser = req.body;
 
+    // TODO: add req validation
+
     try {
       await this.model.create(newUser);
       res.status(201).json(newUser);

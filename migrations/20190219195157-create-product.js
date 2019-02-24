@@ -7,10 +7,21 @@ module.exports = {
       type: Sequelize.INTEGER,
     },
     name: {
+      required: true,
+      allowNull: false,
       type: Sequelize.STRING,
     },
-    cost: {
+    brand: {
+      required: true,
+      allowNull: false,
+      type: Sequelize.STRING,
+    },
+    price: {
       type: Sequelize.FLOAT,
+    },
+    options: {
+      // type: Sequelize.ARRAY(Sequelize.TEXT),
+      type: Sequelize.TEXT,
     },
     createdAt: {
       allowNull: false,
@@ -23,5 +34,5 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }),
-  down: queryInterface => queryInterface.dropTable('products'),
+  down: queryInterface => queryInterface.dropTable('Products'),
 };

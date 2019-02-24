@@ -9,8 +9,6 @@ class UserController {
   async create(req, res) {
     const newUser = req.body;
 
-    // TODO: add req validation
-
     try {
       await this.model.create(newUser);
       res.status(201).json(newUser);
@@ -36,13 +34,6 @@ class UserController {
 
   async getOne(req, res) {
     const { id } = req.params;
-
-    // TODO: consider moving this checking to validator
-    if (!id) {
-      res.status(400).json({
-        message: 'No email provided',
-      });
-    }
 
     try {
       const user = await this.model.findById(id);

@@ -57,7 +57,9 @@ class Importer {
         // TODO: extract mapper from importer to make importer format independent
         const mappedArray = dataArray.map(item => ({
           name: item.name,
-          cost: item.cost,
+          brand: item.brand,
+          price: item.price,
+          options: item.options,
         }));
 
         return db.Product.bulkCreate(mappedArray);

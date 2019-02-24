@@ -29,7 +29,9 @@ const signIn = (req, res) => {
         email: user.email,
         username: user.username,
       };
-      const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+      });
 
       return res.status(200).json({
         code: 200,
@@ -62,7 +64,9 @@ const signInLocalStrategy = (req, res) => {
     email: user.email,
   };
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
 
   res.json({
     code: 200,
@@ -86,7 +90,9 @@ const signInGoogleStrategy = (req, res) => {
     name: user.displayName,
   };
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
 
   res.json({
     code: 200,
@@ -109,7 +115,9 @@ const signInFacebookStrategy = (req, res) => {
     name: user.displayName,
   };
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
 
   res.json({
     code: 200,
@@ -132,7 +140,9 @@ const signInGithubStrategy = (req, res) => {
     name: user.displayName,
   };
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 300 });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
 
   res.json({
     code: 200,

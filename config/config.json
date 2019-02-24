@@ -1,0 +1,5 @@
+{
+	"name": "Node.js Express Application",
+	"watchPath": "./data",
+	"watchDelay": 5000
+}

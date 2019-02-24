@@ -35,14 +35,12 @@ class UserController {
   async getOne(req, res) {
     const { id } = req.params;
 
-    // const { email } = req.params;
-
-    // // move this logic to validator
-    // if (!email) {
-    //   res.status(400).json({
-    //     message: 'No email provided',
-    //   });
-    // }
+    // TODO: consider moving this checking to validator
+    if (!id) {
+      res.status(400).json({
+        message: 'No email provided',
+      });
+    }
 
     try {
       const user = await this.model.findById(id);

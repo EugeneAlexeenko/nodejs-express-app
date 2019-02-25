@@ -25,9 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: {
       type: DataTypes.DATE,
     },
-  }, {
-    underscored: true,
-  });
+  }, {});
 
   Review.associate = (models) => {
     Review.belongsTo(models.Product, {

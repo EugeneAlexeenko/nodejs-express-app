@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/', ProductController.create.bind(ProductController));
 router.get('/', ProductController.getAll.bind(ProductController));
 router.get('/:id', ProductController.getOne.bind(ProductController));
-router.get('/:id/reviews', ProductController.getAllReviewsById.bind(ProductController));
+router.get('/:id/reviews', ProductController.getAllReviewsByProductId.bind(ProductController));
 
 export default router;
